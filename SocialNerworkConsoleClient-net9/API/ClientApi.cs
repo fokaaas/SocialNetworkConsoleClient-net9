@@ -1,9 +1,6 @@
-using System;
-using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
-using SocialNerworkConsoleClient_net9.Interfaces;
 
 namespace SocialNerworkConsoleClient_net9.API;
 
@@ -12,19 +9,17 @@ public class ClientApi
     private readonly HttpClient _httpClient;
     protected readonly string BaseUrl;
 
-    public ClientApi(string baseUrl)
+    public ClientApi(string url)
     {
-        BaseUrl = baseUrl;
+        BaseUrl = @"https://localhost:5020/api" + url;
         _httpClient = new HttpClient { BaseAddress = new Uri(BaseUrl) };
     }
-    
+
     private void AddAuthorizationHeader()
     {
         var token = AuthManager.GetAuthToken();
         if (!string.IsNullOrEmpty(token))
-        {
-            _httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-        }
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
     }
 
     protected async Task<T> GetAsync<T>(string endpoint)

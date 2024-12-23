@@ -1,11 +1,11 @@
-using SocialNerworkConsoleClient_net9.Interfaces;
+using SocialNerworkConsoleClient_net9.API.Interfaces;
 using SocialNerworkConsoleClient_net9.Models.Conversation;
 
 namespace SocialNerworkConsoleClient_net9.API;
 
 public class ConversationApi : ClientApi, IConversationApi
 {
-    public ConversationApi(string baseUrl) : base(baseUrl)
+    public ConversationApi() : base("/conversations")
     {
     }
 
@@ -33,7 +33,8 @@ public class ConversationApi : ClientApi, IConversationApi
         await PatchAsync<ConversationUpdateModel, object>(endpoint, conversationModel);
     }
 
-    public async Task UpdateParticipant(int conversationId, int userId, ConversationParticipantUpdateModel participantModel)
+    public async Task UpdateParticipant(int conversationId, int userId,
+        ConversationParticipantUpdateModel participantModel)
     {
         var endpoint = $"conversations/{conversationId}/users/{userId}";
         await PatchAsync<ConversationParticipantUpdateModel, object>(endpoint, participantModel);

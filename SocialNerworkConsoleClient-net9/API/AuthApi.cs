@@ -1,4 +1,4 @@
-using SocialNerworkConsoleClient_net9.Interfaces;
+using SocialNerworkConsoleClient_net9.API.Interfaces;
 using SocialNerworkConsoleClient_net9.Models.Auth;
 using SocialNerworkConsoleClient_net9.Models.User;
 
@@ -6,10 +6,10 @@ namespace SocialNerworkConsoleClient_net9.API;
 
 public class AuthApi : ClientApi, IAuthApi
 {
-    public AuthApi(string baseUrl) : base(baseUrl + "/auth")
+    public AuthApi() : base("/auth")
     {
     }
-    
+
     public async Task<TokenModel> SignUpAsync(SignUpModel signUpModel)
     {
         var endpoint = "/sign-up";

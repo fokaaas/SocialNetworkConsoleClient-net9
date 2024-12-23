@@ -1,3 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-Console.WriteLine("Hello, World!");
+﻿Console.WriteLine("Social Network Console Client");
+while (true)
+{
+    Console.Write("> ");
+    var input = Console.ReadLine();
+    if (input is null) continue;
+}

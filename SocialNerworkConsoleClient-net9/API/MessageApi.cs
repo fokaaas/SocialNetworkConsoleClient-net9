@@ -1,11 +1,11 @@
-using SocialNerworkConsoleClient_net9.Interfaces;
+using SocialNerworkConsoleClient_net9.API.Interfaces;
 using SocialNerworkConsoleClient_net9.Models.Message;
 
 namespace SocialNerworkConsoleClient_net9.API;
 
 public class MessageApi : ClientApi, IMessageApi
 {
-    public MessageApi(string baseUrl) : base(baseUrl)
+    public MessageApi() : base("/messages")
     {
     }
 

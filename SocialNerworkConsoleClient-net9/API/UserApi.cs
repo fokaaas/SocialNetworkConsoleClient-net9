@@ -1,11 +1,11 @@
-using SocialNerworkConsoleClient_net9.Interfaces;
+using SocialNerworkConsoleClient_net9.API.Interfaces;
 using SocialNerworkConsoleClient_net9.Models.User;
 
 namespace SocialNerworkConsoleClient_net9.API;
 
 public class UserApi : ClientApi, IUserApi
 {
-    public UserApi(string baseUrl) : base(baseUrl)
+    public UserApi() : base("/users")
     {
     }
 
