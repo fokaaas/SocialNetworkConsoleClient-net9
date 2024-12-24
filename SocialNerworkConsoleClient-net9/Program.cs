@@ -1,4 +1,8 @@
-﻿Console.WriteLine("Social Network Console Client");
+﻿using SocialNerworkConsoleClient_net9.Commands;
+
+var authCommand = new AuthCommand();
+
+Console.WriteLine("Social Network Console Client");
 while (true)
 {
     Console.Write("> ");
@@ -13,7 +17,7 @@ while (true)
 
     try
     {
-        GetCommand(input.Trim())();
+        await GetCommand(input.Trim())();
     }
     catch (Exception e)
     {
@@ -25,7 +29,10 @@ while (true)
 
 Command GetCommand(string command, params string[] args) => command switch
 {
-    _ => () => Console.WriteLine($"Command not found: {command}"),
+    "reg" => async () => await authCommand.SignUpAsync(),
+    "login" => async () => await authCommand.SignInAsync(),
+    "whoami" => async () => await authCommand.MeAsync(),
+    _ => async () => Console.WriteLine($"Command not found: {command}"),
 };
 
-internal delegate void Command();
+internal delegate Task Command();

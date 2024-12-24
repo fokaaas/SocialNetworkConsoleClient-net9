@@ -5,38 +5,36 @@ namespace SocialNerworkConsoleClient_net9.API;
 
 public class ConversationApi : ClientApi, IConversationApi
 {
-    public ConversationApi() : base("/conversations")
+    public ConversationApi() : base("conversations")
     {
     }
 
     public async Task<ConversationsModel> GetManyByUserId()
     {
-        var endpoint = "conversations";
-        return await GetAsync<ConversationsModel>(endpoint);
+        return await GetAsync<ConversationsModel>("");
     }
 
     public async Task<ConversationModel> GetById(int id)
     {
-        var endpoint = $"conversations/{id}";
+        var endpoint = $"/{id}";
         return await GetAsync<ConversationModel>(endpoint);
     }
 
     public async Task Create(ConversationCreateModel conversationModel)
     {
-        var endpoint = "conversations";
-        await PostAsync<ConversationCreateModel, object>(endpoint, conversationModel);
+        await PostAsync<ConversationCreateModel, object>("", conversationModel);
     }
 
     public async Task Update(int id, ConversationUpdateModel conversationModel)
     {
-        var endpoint = $"conversations/{id}";
+        var endpoint = $"/{id}";
         await PatchAsync<ConversationUpdateModel, object>(endpoint, conversationModel);
     }
 
     public async Task UpdateParticipant(int conversationId, int userId,
         ConversationParticipantUpdateModel participantModel)
     {
-        var endpoint = $"conversations/{conversationId}/users/{userId}";
+        var endpoint = $"/{conversationId}/users/{userId}";
         await PatchAsync<ConversationParticipantUpdateModel, object>(endpoint, participantModel);
     }
 }

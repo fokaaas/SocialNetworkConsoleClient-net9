@@ -9,5 +9,5 @@ public interface IAuthApi
 
     Task<TokenModel> SignInAsync(SignInModel signInModel);
 
-    Task<UserModel> Me();
+    Task<UserModel> MeAsync();
 }

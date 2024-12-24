@@ -6,13 +6,13 @@ namespace SocialNerworkConsoleClient_net9.API;
 
 public class AuthApi : ClientApi, IAuthApi
 {
-    public AuthApi() : base("/auth")
+    public AuthApi() : base("auth")
     {
     }
 
     public async Task<TokenModel> SignUpAsync(SignUpModel signUpModel)
     {
-        var endpoint = "/sign-up";
+        var endpoint = "sign-up";
         var tokenModel = await PostAsync<SignUpModel, TokenModel>(endpoint, signUpModel);
         AuthManager.SetAuthToken(tokenModel.Token);
         return tokenModel;
@@ -20,13 +20,13 @@ public class AuthApi : ClientApi, IAuthApi
 
     public async Task<TokenModel> SignInAsync(SignInModel signInModel)
     {
-        var endpoint = "/sign-in";
+        var endpoint = "sign-in";
         var tokenModel = await PostAsync<SignInModel, TokenModel>(endpoint, signInModel);
         AuthManager.SetAuthToken(tokenModel.Token);
         return tokenModel;
     }
 
-    public async Task<UserModel> Me()
+    public async Task<UserModel> MeAsync()
     {
         var endpoint = "me";
         return await GetAsync<UserModel>(endpoint);
