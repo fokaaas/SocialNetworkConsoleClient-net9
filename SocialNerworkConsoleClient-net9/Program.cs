@@ -5,6 +5,24 @@ var authCommand = new AuthCommand();
 var userCommand = new UserCommand();
 var conversationCommand = new ConversationCommand();
 
+var helpMessage = "Avialable commands:\n" +
+                  "reg - register\n" +
+                  "login - login\n" +
+                  "whoami - show current user\n" +
+                  "users - show all users\n" +
+                  "request send - send friend request\n" +
+                  "requests - show friend requests\n" +
+                  "friends - show friends\n" +
+                  "request accept - accept friend request\n" +
+                  "request decline - decline friend request\n" +
+                  "friend remove - remove friend\n" +
+                  "convs - show conversations\n" +
+                  "conv participants - show conversation participants\n" +
+                  "conv open - open conversation\n" +
+                  "conv create - create conversation\n" +
+                  "exit - exit from app\n" +
+                  "help - show help message";
+
 Console.WriteLine("Social Network Console Client");
 while (true)
 {
@@ -42,6 +60,7 @@ Command GetCommand(string command, params string[] args) => command switch
     "conv open" => async () => await conversationCommand.OpenAsync(),
     "conv create" => async () => await conversationCommand.CreateAsync(),
     "exit" => async () => Logger.WriteSuccess("Bye!"),
+    "help" => async () => Console.WriteLine(helpMessage),
     _ => async () => Console.WriteLine($"Command not found: {command}"),
 };
 
