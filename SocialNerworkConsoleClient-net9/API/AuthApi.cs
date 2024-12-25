@@ -13,17 +13,13 @@ public class AuthApi : ClientApi, IAuthApi
     public async Task<TokenModel> SignUpAsync(SignUpModel signUpModel)
     {
         var endpoint = "sign-up";
-        var tokenModel = await PostAsync<SignUpModel, TokenModel>(endpoint, signUpModel);
-        AuthManager.SetAuthToken(tokenModel.Token);
-        return tokenModel;
+        return await PostAsync<SignUpModel, TokenModel>(endpoint, signUpModel);
     }
 
     public async Task<TokenModel> SignInAsync(SignInModel signInModel)
     {
         var endpoint = "sign-in";
-        var tokenModel = await PostAsync<SignInModel, TokenModel>(endpoint, signInModel);
-        AuthManager.SetAuthToken(tokenModel.Token);
-        return tokenModel;
+        return await PostAsync<SignInModel, TokenModel>(endpoint, signInModel);
     }
 
     public async Task<UserModel> MeAsync()

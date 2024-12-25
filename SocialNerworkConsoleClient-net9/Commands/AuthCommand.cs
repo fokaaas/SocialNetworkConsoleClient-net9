@@ -37,9 +37,10 @@ public class AuthCommand : IAuthCommand
         };
         
         Validator.ValidateModel<SignUpModel>(signUpModel);
-        await _authApi.SignUpAsync(signUpModel);
+        var token = await _authApi.SignUpAsync(signUpModel);
+        AuthManager.SetAuthToken(token.Token);
         
-        Success();
+        Logger.WriteSuccess("Success!");
     }
     
     public async Task SignInAsync()
@@ -57,21 +58,15 @@ public class AuthCommand : IAuthCommand
         };
         
         Validator.ValidateModel<SignInModel>(signInModel);
-        await _authApi.SignInAsync(signInModel);
+        var token = await _authApi.SignInAsync(signInModel);
+        AuthManager.SetAuthToken(token.Token);
         
-        Success();
+        Logger.WriteSuccess("Success!");
     }
     
     public async Task MeAsync()
     {
         var user = await _authApi.MeAsync();
         Console.WriteLine($"You are {user.Name} {user.Surname}!");
-    }
-    
-    private void Success()
-    {
-        Console.ForegroundColor = ConsoleColor.Green;
-        Console.WriteLine("Success!");
-        Console.ResetColor();
     }
 }
