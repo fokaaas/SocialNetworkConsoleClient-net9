@@ -16,7 +16,7 @@ public class ConversationApi : ClientApi, IConversationApi
 
     public async Task<ConversationModel> GetById(int id)
     {
-        var endpoint = $"/{id}";
+        var endpoint = $"{id}";
         return await GetAsync<ConversationModel>(endpoint);
     }
 
@@ -27,14 +27,14 @@ public class ConversationApi : ClientApi, IConversationApi
 
     public async Task Update(int id, ConversationUpdateModel conversationModel)
     {
-        var endpoint = $"/{id}";
+        var endpoint = $"{id}";
         await PatchAsync<ConversationUpdateModel, object>(endpoint, conversationModel);
     }
 
     public async Task UpdateParticipant(int conversationId, int userId,
         ConversationParticipantUpdateModel participantModel)
     {
-        var endpoint = $"/{conversationId}/users/{userId}";
+        var endpoint = $"{conversationId}/users/{userId}";
         await PatchAsync<ConversationParticipantUpdateModel, object>(endpoint, participantModel);
     }
 }

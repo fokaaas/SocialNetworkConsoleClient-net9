@@ -11,7 +11,7 @@ public class MessageApi : ClientApi, IMessageApi
 
     public async Task<MessageModel> GetById(int id)
     {
-        var endpoint = $"/{id}";
+        var endpoint = $"{id}";
         return await GetAsync<MessageModel>(endpoint);
     }
 
@@ -22,13 +22,13 @@ public class MessageApi : ClientApi, IMessageApi
 
     public async Task Update(int id, MessageUpdateModel messageModel)
     {
-        var endpoint = $"/{id}";
+        var endpoint = $"{id}";
         await PatchAsync<MessageUpdateModel, object>(endpoint, messageModel);
     }
 
     public async Task Delete(int id)
     {
-        var endpoint = $"/{id}";
+        var endpoint = $"{id}";
         await DeleteAsync(endpoint);
     }
 }

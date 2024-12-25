@@ -3,6 +3,7 @@ using SocialNerworkConsoleClient_net9.Commands;
 
 var authCommand = new AuthCommand();
 var userCommand = new UserCommand();
+var conversationCommand = new ConversationCommand();
 
 Console.WriteLine("Social Network Console Client");
 while (true)
@@ -36,6 +37,10 @@ Command GetCommand(string command, params string[] args) => command switch
     "request accept" => async () => await userCommand.AcceptFriendRequestAsync(),
     "request decline" => async () => await userCommand.DeclineFriendRequestAsync(),
     "friend remove" => async () => await userCommand.RemoveFriendAsync(),
+    "convs" => async () => await conversationCommand.ShowAsync(),
+    "conv participants" => async () => await conversationCommand.ShowParticipantsAsync(),
+    "conv open" => async () => await conversationCommand.OpenAsync(),
+    "conv create" => async () => await conversationCommand.CreateAsync(),
     "exit" => async () => Logger.WriteSuccess("Bye!"),
     _ => async () => Console.WriteLine($"Command not found: {command}"),
 };
